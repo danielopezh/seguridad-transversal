@@ -17,5 +17,19 @@ subjects:
   namespace: daniel-lopez-fisa-dev
 roleRef:
   kind: ClusterRole
-  name: admin # El rol que creamos
+  name: edit # El rol que creamos
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cicd-binding-rbac
+  namespace: daniel-lopez-fisa-dev
+subjects:
+- kind: ServiceAccount
+  name: cicd-serviceaccount # La cuenta de servicio que creamos
+  namespace: daniel-lopez-fisa-dev
+roleRef:
+  kind: Role
+  name: rbac-edit # El rol que creamos
   apiGroup: rbac.authorization.k8s.io
